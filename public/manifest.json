@@ -1,9 +1,9 @@
 {
-  "name": "app name",
-  "short_name": "short name",
+  "name": "react-supabase-todo-app",
+  "short_name": "todo-app",
   "theme_color": "#fff",
   "background_color": "#fff",
-  "display": "browser",
+  "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
