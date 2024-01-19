@@ -38,6 +38,18 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: OUTPUT_PATH, // 画像を出力するディレクトリ
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
@@ -60,8 +72,9 @@ module.exports = {
       theme_color: "#FF0000",
       icons: [
         {
-          src: __dirname + "/src/images/R5.png",
-          sizes: [96, 128, 192, 256, 384, 512],
+          sizes: "192x192",
+          src: "./src/images/R5.png",
+          type: "image/png",
         },
       ],
     }),
