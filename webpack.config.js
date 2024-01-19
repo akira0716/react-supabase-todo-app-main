@@ -56,8 +56,6 @@ module.exports = {
       start_url: "index.html", // 開始時に起動するページ
       short_name: "3D Timer",
       name: "3D Ramen Timer",
-      display: "standalone",
-      start_url: "index.html",
       background_color: "#202124",
       theme_color: "#FF0000",
       icons: [
