@@ -1,7 +1,12 @@
 import { createClient } from "@supabase/supabase-js";
 
-// Create a single supabase client for interacting with your database
-export const supabase = createClient(
-  process.env.REACT_PUBLIC_SUPABASE_URL!,
-  process.env.REACT_PUBLIC_SUPABASE_ANON_KEY!
-);
+const supabaseUrl = process.env.REACT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.REACT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error("Supabase URL and key are required.");
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+export default supabase;
