@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const Dotenv = require("dotenv-webpack");
 const workBoxWebpackPlugin = require("workbox-webpack-plugin");
-const WebpackPwaManifest = require("webpack-pwa-manifest");
 const OUTPUT_PATH = `${__dirname}/dist`;
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
