@@ -1,6 +1,6 @@
-export async function getSupabaseUrl(): Promise<string | undefined> {
-  "use server";
+"use server";
 
+export async function getSupabaseUrl(): Promise<string | undefined> {
   const url = process.env.REACT_APP_SUPABASE_URL;
   if (url) {
     return url;
@@ -10,8 +10,6 @@ export async function getSupabaseUrl(): Promise<string | undefined> {
 }
 
 export async function getSupabaseAPIKey(): Promise<string | undefined> {
-  "use server";
-
   const api_key = process.env.REACT_APP_SUPABASE_ANON_KEY;
   if (api_key) {
     return api_key;
