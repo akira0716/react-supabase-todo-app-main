@@ -1,19 +1,20 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-// Create a single supabase client for interacting with your database
-
-let supabaseUrl;
-let supabaseAnonKey;
-let method;
-
-if (
-  process.env.REACT_PUBLIC_SUPABASE_URL &&
-  process.env.REACT_PUBLIC_SUPABASE_ANON_KEY
-) {
-  supabaseUrl = process.env.REACT_PUBLIC_SUPABASE_URL;
-  supabaseAnonKey = process.env.REACT_PUBLIC_SUPABASE_ANON_KEY;
-
-  method = createClient(supabaseUrl, supabaseAnonKey);
+// 環境変数から取得する値の型
+interface SupabaseEnv {
+  REACT_PUBLIC_SUPABASE_URL: string;
+  REACT_PUBLIC_SUPABASE_ANON_KEY: string;
 }
 
-export const supabase = method;
+// 環境変数から値を取得
+const supabaseEnv: SupabaseEnv = {
+  REACT_PUBLIC_SUPABASE_URL: process.env.REACT_PUBLIC_SUPABASE_URL || "",
+  REACT_PUBLIC_SUPABASE_ANON_KEY:
+    process.env.REACT_PUBLIC_SUPABASE_ANON_KEY || "",
+};
+
+// Supabaseクライアントの作成
+export const supabase: SupabaseClient = createClient(
+  supabaseEnv.REACT_PUBLIC_SUPABASE_URL,
+  supabaseEnv.REACT_PUBLIC_SUPABASE_ANON_KEY
+);
