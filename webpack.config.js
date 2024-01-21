@@ -49,9 +49,6 @@ module.exports = {
       template: __dirname + "/src/index.html",
     }),
     new Dotenv(),
-    new (require("webpack").DefinePlugin)({
-      "process.env": JSON.stringify(process.env),
-    }),
     new workBoxWebpackPlugin.GenerateSW({
       swDest: OUTPUT_PATH + "/service-worker.js",
     }),
