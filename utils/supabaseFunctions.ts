@@ -1,4 +1,4 @@
-import { supabase } from "./supabase";
+import supabase from "./supabase";
 
 export const fetchTodoList = async () => {
   const todoItems = await supabase.from("todo_items").select("*");
