@@ -1,20 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseCreate = async () => {
-  "use server";
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
-  const supabaseUrl = process.env.REACT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.REACT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl) {
-    throw new Error("URLがないよ");
-  }
-
-  if (!supabaseKey) {
-    throw new Error("KEYがないよ");
-  }
-
-  return createClient(supabaseUrl, supabaseKey);
-};
-
-export const supabase = supabaseCreate();
+// Create a single supabase client for interacting with your database
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
