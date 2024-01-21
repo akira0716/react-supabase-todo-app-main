@@ -1,6 +1,11 @@
 import { supabase } from "./supabase";
 
 export const fetchTodoList = async () => {
+  if (supabase) {
+  } else {
+    console.log("Undefined");
+  }
+
   const todoItems = await supabase.from("todo_items").select("*");
   return todoItems.data;
 };
