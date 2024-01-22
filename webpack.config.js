@@ -1,8 +1,11 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
 const workBoxWebpackPlugin = require("workbox-webpack-plugin");
 const OUTPUT_PATH = `${__dirname}/dist`;
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const dotenv = require("dotenv");
+const webpack = require("webpack");
+
+const env = dotenv.config().parsed;
 
 module.exports = {
   mode: "development",
@@ -48,13 +51,24 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: __dirname + "/src/index.html",
     }),
-    new Dotenv(),
     new workBoxWebpackPlugin.GenerateSW({
       swDest: OUTPUT_PATH + "/service-worker.js",
     }),
     new CopyWebpackPlugin({
       patterns: [{ from: "public", to: "." }],
     }),
+    env !== undefined
+      ? new webpack.DefinePlugin({
+          "process.env": JSON.stringify(process.env),
+        })
+      : new webpack.DefinePlugin({
+          "process.env.REACT_APP_SUPABASE_URL": JSON.stringify(
+            process.env.REACT_APP_SUPABASE_URL
+          ),
+          "process.env.REACT_APP_SUPABASE_ANON_KEY": JSON.stringify(
+            process.env.REACT_APP_SUPABASE_ANON_KEY
+          ),
+        }),
   ],
   devServer: {
     static: {
